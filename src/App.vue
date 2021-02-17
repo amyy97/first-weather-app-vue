@@ -1,33 +1,32 @@
 <template>
   <div id="app">
-     <main>
-       <div class="search-box">
-         <input type="text"
-          class="search-bar"
+    <main>
+      <div class="search-box">
+        <input 
+          type="text" 
+          class="search-bar" 
           placeholder="Search..."
           v-model="query"
           @keypress="fetchWeather"
-         >
-        
-       </div>
+        />
+      </div>
 
-        <div class="weather-wrap"  :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
-          <div class="location-box">
-            <div class="location">{{weather.name}}, {{weather.sys.country}}</div>
-            <div class="date">{{dateBuilder()}}</div>
-          </div>
-
-          <div class="weather-box">
-            <div class="temp">{{Math.round(weather.main.temp)}}9*c</div>
-            <div class="weather">{{weather.weather[0].main}}</div>
-          </div>
+      <div class="weather-wrap"  :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
+        <div class="location-box">
+          <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
+          <div class="date">{{ dateBuilder() }}</div>
         </div>
-     </main>
+
+        <div class="weather-box">
+          <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
+          <div class="weather">{{ weather.weather[0].main }}</div>
+        </div>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'app',
   data () {
@@ -64,6 +63,7 @@ export default {
 }
 </script>
 
+
 <style>
   *{
     margin: 0;
@@ -77,7 +77,7 @@ export default {
 
   #app{
     /* background-image: url('./assets/cold.jpg'); */
-    background-color: #6cb9c8;
+    background-color: black;
     background-size: cover;
     background-position: bottom;
     transition: 0.4s;
@@ -86,6 +86,10 @@ export default {
 
   #app.warm{
     background-image: url('./assets/warm.jpg');
+  }
+
+  #app.cold{
+    background-image: url('./assets/cold.jpg');
   }
   main{
     min-height: 100vh;
